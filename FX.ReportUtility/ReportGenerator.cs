@@ -116,7 +116,7 @@ namespace FX.ReportUtility
             }
         }
 
-        public string ConnectionString
+        private string ConnectionString
         {
             get
             {
