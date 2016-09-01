@@ -11,7 +11,7 @@ using Sage.SalesLogix.DelphiBridge;
 using Sage.SalesLogix.Plugins;
 using SlxReporting;
 
-namespace FX.Reporting
+namespace FX.ReportUtility
 {
     /* NOTES---
      * 

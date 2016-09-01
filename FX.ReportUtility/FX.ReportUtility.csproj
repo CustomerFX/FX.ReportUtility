@@ -7,8 +7,8 @@
     <ProjectGuid>{4A555E2D-CC77-4B31-A08A-1981EA3E5ED2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FX.Reporting</RootNamespace>
-    <AssemblyName>FX.Reporting</AssemblyName>
+    <RootNamespace>FX.ReportUtility</RootNamespace>
+    <AssemblyName>FX.ReportUtility</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
