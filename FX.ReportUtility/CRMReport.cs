@@ -79,7 +79,7 @@ namespace FX.ReportUtility
             var fileName = Path.Combine(OutputFilePath, SanitizeFileName(OutputFileName));
             Log.Debug("File name to output report to: " + fileName);
 
-            var plugin = Plugin.LoadByName(this.ReportFamily, this.ReportName, PluginType.CrystalReport);
+            var plugin = Plugin.LoadByName(this.ReportName, this.ReportFamily, PluginType.CrystalReport);
             if (plugin != null)
             {
                 var tempRpt = Path.GetTempFileName() + ".rpt";
@@ -104,6 +104,8 @@ namespace FX.ReportUtility
                     report.Close();
                 }
             }
+            else
+                throw new ArgumentException("The report plugin for " + this.ReportPlugin + "can not be found.");
 
             return fileName;
         }
