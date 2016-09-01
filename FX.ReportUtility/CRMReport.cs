@@ -68,11 +68,11 @@ namespace FX.ReportUtility
 
         public IAttachment CreateAttachment(string RecordSelectionFormula, string Description = null)
         {
-            var reportOutput = ExportToPDF(RecordSelectionFormula);
+            var reportOutput = SaveAsPDF(RecordSelectionFormula);
             return GetAttachmentForFile(reportOutput, Description);
         }
 
-        public string ExportToPDF(string RecordSelectionFormula, string OutputFileName = null, string OutputFilePath = null)
+        public string SaveAsPDF(string RecordSelectionFormula, string OutputFileName = null, string OutputFilePath = null)
         {
             if (OutputFileName == null) OutputFileName = string.Format("{0}-{1}.pdf", this.ReportName, Environment.TickCount);
             if (OutputFilePath == null || !Directory.Exists(OutputFilePath)) OutputFilePath = Path.GetTempPath();
