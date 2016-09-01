@@ -29,35 +29,57 @@ namespace FX.ReportUtility
      * 
      * For attaching to a record, it is the responsibility of the code using this assembly to set the references for the attachment record and then save it. For example:
      * 
-     * var attachment = AttachReport("System:My Report", "{OPPORTUNITY.OPPORTUNITYID} = '" + someOpportunityId + "'");
+     * var report = new CRMReport("System:My Report");
+     * var attachment = report.CreateAttachment("{OPPORTUNITY.OPPORTUNITYID} = '" + someOpportunityId + "'");
      * attachment.OpportunityId = someOpportunityId;
      * attachment.AccountId = someAccountId;
      * attachment.Save();
      * 
      */
 
-    public class ReportGenerator
+    public class CRMReport
     {
-        public IAttachment AttachReport(string ReportPlugin, string RecordSelectionFormula, string Description = null)
+        public CRMReport(string ReportPlugin)
         {
-            var reportOutput = ExportReportToPDF(ReportPlugin, RecordSelectionFormula);
-            return CreateAttachment(reportOutput, Description);
+            this.ReportPlugin = ReportPlugin;
         }
 
-        public string ExportReportToPDF(string ReportPlugin, string RecordSelectionFormula, string OutputFileName = null, string OutputFilePath = null)
+        public string ReportPlugin { get; set; }
+
+        public string ReportFamily
         {
-            var log = LogManager.GetLogger(typeof(ReportGenerator));
+            get
+            {
+                var parts = GetReportPluginParts();
+                return parts[0];
+            }
+        }
 
-            var reportPluginParts = ReportPlugin.Split();
-            if (reportPluginParts.Length != 2)
-                throw new ArgumentException("The report plugin name for the ReportPlugin argument is not valid. The parameter must be in the format of Family:ReportPluginName.");
+        public string ReportName
+        {
+            get
+            {
+                var parts = GetReportPluginParts();
+                return parts[1];
+            }
+        }
 
-            if (OutputFileName == null) OutputFileName = string.Format("{0}-{1}.pdf", reportPluginParts[1], Environment.TickCount);
+        private ILog Log = LogManager.GetLogger(typeof(CRMReport));
+
+        public IAttachment CreateAttachment(string RecordSelectionFormula, string Description = null)
+        {
+            var reportOutput = ExportToPDF(ReportPlugin, RecordSelectionFormula);
+            return GetAttachmentForFile(reportOutput, Description);
+        }
+
+        public string ExportToPDF(string RecordSelectionFormula, string OutputFileName = null, string OutputFilePath = null)
+        {
+            if (OutputFileName == null) OutputFileName = string.Format("{0}-{1}.pdf", this.ReportName, Environment.TickCount);
             if (OutputFilePath == null || !Directory.Exists(OutputFilePath)) OutputFilePath = Path.GetTempPath();
             var fileName = Path.Combine(OutputFilePath, SanitizeFileName(OutputFileName));
-            log.Debug("File name to output report to: " + fileName);
+            Log.Debug("File name to output report to: " + fileName);
 
-            var plugin = Plugin.LoadByName(reportPluginParts[0], reportPluginParts[1], PluginType.CrystalReport);
+            var plugin = Plugin.LoadByName(this.ReportFamily, this.ReportName, PluginType.CrystalReport);
             if (plugin != null)
             {
                 var tempRpt = Path.GetTempFileName() + ".rpt";
@@ -86,7 +108,7 @@ namespace FX.ReportUtility
             return fileName;
         }
 
-        private IAttachment CreateAttachment(string FileToAttach, string Description = null)
+        private IAttachment GetAttachmentForFile(string FileToAttach, string Description = null)
         {
             var attach = Sage.Platform.EntityFactory.Create<IAttachment>();
             attach.Description = (string.IsNullOrEmpty(Description) ? Path.GetFileName(FileToAttach) : Description);
@@ -127,6 +149,15 @@ namespace FX.ReportUtility
         private string SanitizeFileName(string fileName)
         {
             return Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
+        }
+
+        private string[] GetReportPluginParts()
+        {
+            var reportPluginParts = ReportPlugin.Split();
+            if (reportPluginParts.Length != 2)
+                throw new ArgumentException("The report plugin name for the ReportPlugin argument is not valid. The parameter must be in the format of Family:ReportPluginName.");
+
+            return reportPluginParts;
         }
     }
 }
