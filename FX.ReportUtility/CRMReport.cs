@@ -68,7 +68,7 @@ namespace FX.ReportUtility
 
         public IAttachment CreateAttachment(string RecordSelectionFormula, string Description = null)
         {
-            var reportOutput = ExportToPDF(ReportPlugin, RecordSelectionFormula);
+            var reportOutput = ExportToPDF(RecordSelectionFormula);
             return GetAttachmentForFile(reportOutput, Description);
         }
 
@@ -116,12 +116,19 @@ namespace FX.ReportUtility
             attach.Description = (string.IsNullOrEmpty(Description) ? Path.GetFileName(FileToAttach) : Description);
             attach.InsertFileAttachment(FileToAttach);
 
-            //Workaround for bug in Attachment
-            var attachment = EntityFactory.GetRepository<IAttachment>();
-            var Attach = attachment.FindFirstByProperty("Id", attach.Id.ToString());
-            File.Move(FileToAttach, Path.Combine(this.AttachmentPath, Attach.FileName));
+            attach = EntityFactory.GetRepository<IAttachment>().FindFirstByProperty("Id", attach.Id.ToString());
 
-            return Attach;
+            //Workaround for bug in attachment
+            if (FileToAttach.ToLower() != Path.Combine(this.AttachmentPath, attach.FileName).ToLower())
+            {
+                try
+                {
+                    File.Move(FileToAttach, Path.Combine(this.AttachmentPath, attach.FileName));
+                }
+                catch (Exception ex) { }
+            }
+
+            return attach;
 
         }
 
