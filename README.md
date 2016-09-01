@@ -15,7 +15,7 @@ attachment.Save();
 **Note:** for attaching to a record, it is the responsibility of the code using this assembly to set the references for the attachment record and then save it.
 
 ```C#
-//exort a PDF as a PDF 
+// export a report as a PDF 
 var report = new FX.ReportUtility.CRMReport("System:My Report");
 var exportedFile = report.SaveAsPDF("{ACCOUNT.ACCOUNTID} = '" + someAccountId + "'");
 ```
