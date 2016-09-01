@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("FX.Reporting")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A utility assembly for generating reports and attaching to records")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Customer FX Corporation")]
 [assembly: AssemblyProduct("FX.Reporting")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
