@@ -46,7 +46,7 @@ namespace FX.ReportUtility
 
         public string ReportPlugin { get; set; }
 
-        public string ReportFamily
+        private string ReportFamily
         {
             get
             {
@@ -55,7 +55,7 @@ namespace FX.ReportUtility
             }
         }
 
-        public string ReportName
+        private string ReportName
         {
             get
             {
@@ -153,7 +153,7 @@ namespace FX.ReportUtility
 
         private string[] GetReportPluginParts()
         {
-            var reportPluginParts = ReportPlugin.Split();
+            var reportPluginParts = ReportPlugin.Split(':');
             if (reportPluginParts.Length != 2)
                 throw new ArgumentException("The report plugin name for the ReportPlugin argument is not valid. The parameter must be in the format of Family:ReportPluginName.");
 
