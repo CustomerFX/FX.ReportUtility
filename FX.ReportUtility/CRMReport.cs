@@ -136,14 +136,7 @@ namespace FX.ReportUtility
         {
             get
             {
-                using (var conn = new OleDbConnection(this.ConnectionString))
-                {
-                    conn.Open();
-                    using (var cmd = new OleDbCommand("select attachmentpath from branchoptions where sitecode = 'NOSYNCSERVER'", conn))
-                    {
-                        return cmd.ExecuteScalar().ToString();
-                    }
-                }
+                return Sage.SalesLogix.Attachment.Rules.GetAttachmentPath();
             }
         }
 
