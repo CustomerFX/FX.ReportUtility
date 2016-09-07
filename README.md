@@ -1,5 +1,5 @@
 # FX.ReportUtility
-A utility assembly for generating reports and attaching to records
+A utility assembly for generating reports and attaching to records. See blog post at [http://customerfx.com/article/exporting-a-report-to-a-pdf-and-attaching-to-a-record-in-server-side-code-in-infor-crm-saleslogix/](http://customerfx.com/article/exporting-a-report-to-a-pdf-and-attaching-to-a-record-in-server-side-code-in-infor-crm-saleslogix/)
 
 # Usage
 The utility assembly can be used to export a report as a PDF or attach a PDF to a record as an attachment.
