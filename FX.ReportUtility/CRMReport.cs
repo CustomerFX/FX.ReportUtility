@@ -118,14 +118,14 @@ namespace FX.ReportUtility
 
             attach = EntityFactory.GetRepository<IAttachment>().FindFirstByProperty("Id", attach.Id.ToString());
 
-            //Workaround for bug in attachment
+            // workaround for bug in attachment
             if (FileToAttach.ToLower() != Path.Combine(this.AttachmentPath, attach.FileName).ToLower())
             {
                 try
                 {
                     File.Move(FileToAttach, Path.Combine(this.AttachmentPath, attach.FileName));
                 }
-                catch (Exception ex) { }
+                catch { }
             }
 
             return attach;
@@ -136,7 +136,24 @@ namespace FX.ReportUtility
         {
             get
             {
-                return Sage.SalesLogix.Attachment.Rules.GetAttachmentPath();
+                using (var conn = new OleDbConnection(this.ConnectionString))
+                {
+                    using (var cmd = new OleDbCommand("select a.attachmentpath from branchoptions a inner join systeminfo b on a.sitecode = b.primaryserver where b.dbtype = 1", conn))
+                    {
+                        conn.Open();
+                        var path = cmd.ExecuteScalar().ToString();
+                        if (!string.IsNullOrEmpty(path))
+                        {
+                            if (!path.EndsWith("\\")) path += "\\";
+                            try
+                            {
+                                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                            }
+                            catch { }
+                        }
+                        return path;
+                    }
+                }
             }
         }
 

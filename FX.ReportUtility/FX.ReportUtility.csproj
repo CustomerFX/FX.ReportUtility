@@ -50,9 +50,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\ReferenceAssemblies\Sage.SalesLogix.dll</HintPath>
     </Reference>
-    <Reference Include="Sage.SalesLogix.BusinessRules">
-      <HintPath>..\..\..\..\..\..\..\inetpub\wwwroot\SlxClient\Bin\Sage.SalesLogix.BusinessRules.dll</HintPath>
-    </Reference>
     <Reference Include="Sage.SalesLogix.DelphiBridge, Version=8.2.0.1136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\ReferenceAssemblies\Sage.SalesLogix.DelphiBridge.dll</HintPath>
