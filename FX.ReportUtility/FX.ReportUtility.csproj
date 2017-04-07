@@ -32,35 +32,35 @@
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\ReferenceAssemblies\log4net.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Sage.Entity.Interfaces, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\ReferenceAssemblies\Sage.Entity.Interfaces.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Entity.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Sage.Platform, Version=8.2.0.1211, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\ReferenceAssemblies\Sage.Platform.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Sage.Platform.Application, Version=8.2.0.1136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\ReferenceAssemblies\Sage.Platform.Application.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.Platform.Application.dll</HintPath>
     </Reference>
     <Reference Include="Sage.SalesLogix, Version=8.2.0.1211, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\ReferenceAssemblies\Sage.SalesLogix.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.SalesLogix.dll</HintPath>
     </Reference>
     <Reference Include="Sage.SalesLogix.DelphiBridge, Version=8.2.0.1136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\ReferenceAssemblies\Sage.SalesLogix.DelphiBridge.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.SalesLogix.DelphiBridge.dll</HintPath>
     </Reference>
     <Reference Include="Sage.SalesLogix.Plugins, Version=8.2.0.1136, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\ReferenceAssemblies\Sage.SalesLogix.Plugins.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Sage.SalesLogix.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="Saleslogix.Reporting.API, Version=8.2.0.1136, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\ReferenceAssemblies\Saleslogix.Reporting.API.dll</HintPath>
+      <HintPath>$(ProgramFiles)\SalesLogix\ReferenceAssemblies\Saleslogix.Reporting.API.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
