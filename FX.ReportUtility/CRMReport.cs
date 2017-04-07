@@ -121,7 +121,7 @@ namespace FX.ReportUtility
             return fileName;
         }
 
-        private IAttachment GetAttachmentForFile(string FileToAttach, string Description = null)
+        public IAttachment GetAttachmentForFile(string FileToAttach, string Description = null)
         {
             var attach = Sage.Platform.EntityFactory.Create<IAttachment>();
             attach.Description = (string.IsNullOrEmpty(Description) ? Path.GetFileName(FileToAttach) : Description);
