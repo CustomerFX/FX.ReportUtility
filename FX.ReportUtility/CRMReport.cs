@@ -10,6 +10,7 @@ using Sage.Entity.Interfaces;
 using Sage.SalesLogix.DelphiBridge;
 using Sage.SalesLogix.Plugins;
 using SlxReporting;
+using System.Collections.Generic;
 
 namespace FX.ReportUtility
 {
@@ -30,7 +31,8 @@ namespace FX.ReportUtility
      * For attaching to a record, it is the responsibility of the code using this assembly to set the references for the attachment record and then save it. For example:
      * 
      * var report = new CRMReport("System:My Report");
-     * var attachment = report.CreateAttachment("{OPPORTUNITY.OPPORTUNITYID} = '" + someOpportunityId + "'");
+     * report.RecordSelectionFormula = "{OPPORTUNITY.OPPORTUNITYID} = '" + someOpportunityId + "'";
+     * var attachment = report.CreateAttachment();
      * attachment.OpportunityId = someOpportunityId;
      * attachment.AccountId = someAccountId;
      * attachment.Save();
@@ -39,12 +41,17 @@ namespace FX.ReportUtility
 
     public class CRMReport
     {
+        private ILog Log = LogManager.GetLogger(typeof(CRMReport));
+
         public CRMReport(string ReportPlugin)
         {
+            this.Parameters = new List<KeyValuePair<string, object>>();
             this.ReportPlugin = ReportPlugin;
         }
 
         public string ReportPlugin { get; set; }
+        public string RecordSelectionFormula { get; set; }
+        public List<KeyValuePair<string, object>> Parameters { get; set; }
 
         private string ReportFamily
         {
@@ -64,15 +71,18 @@ namespace FX.ReportUtility
             }
         }
 
-        private ILog Log = LogManager.GetLogger(typeof(CRMReport));
-
-        public IAttachment CreateAttachment(string RecordSelectionFormula, string Description = null)
+        public void SetParameter(string Name, object Value)
         {
-            var reportOutput = SaveAsPDF(RecordSelectionFormula);
+            this.Parameters.Add(new KeyValuePair<string, object>(Name, Value));
+        }
+
+        public IAttachment CreateAttachment(string Description = null)
+        {
+            var reportOutput = SaveAsPDF();
             return GetAttachmentForFile(reportOutput, Description);
         }
 
-        public string SaveAsPDF(string RecordSelectionFormula, string OutputFileName = null, string OutputFilePath = null)
+        public string SaveAsPDF(string OutputFileName = null, string OutputFilePath = null)
         {
             if (OutputFileName == null) OutputFileName = string.Format("{0}-{1}.pdf", this.ReportName, Environment.TickCount);
             if (OutputFilePath == null || !Directory.Exists(OutputFilePath)) OutputFilePath = Path.GetTempPath();
@@ -99,7 +109,8 @@ namespace FX.ReportUtility
                 {
                     report.Load(tempRpt);
                     report.UpdateDbConnectionInfo(this.ConnectionString);
-                    report.RecordSelectionFormula = RecordSelectionFormula;
+                    report.RecordSelectionFormula = this.RecordSelectionFormula;
+                    if (this.Parameters.Count > 0) this.Parameters.ForEach(param => report.SetParameterValue(param.Key, param.Value));
                     report.ExportAsPdfEx(fileName, plugin.Name, true);
                     report.Close();
                 }
