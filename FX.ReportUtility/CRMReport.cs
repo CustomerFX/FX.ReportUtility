@@ -32,7 +32,7 @@ namespace FX.ReportUtility
      * 
      * var report = new CRMReport("System:My Report");
      * report.RecordSelectionFormula = "{OPPORTUNITY.OPPORTUNITYID} = '" + someOpportunityId + "'";
-     * var attachment = report.CreateAttachment();
+     * var attachment = report.CreateAttachment();  // returns an Sage.Entity.Interfaces.IAttachment object
      * attachment.OpportunityId = someOpportunityId;
      * attachment.AccountId = someAccountId;
      * attachment.Save();

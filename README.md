@@ -8,7 +8,7 @@ The utility assembly can be used to export a report as a PDF or attach a PDF to 
 // export a report to a PDF and save as an attachment
 var report = new FX.ReportUtility.CRMReport("System:My Report");
 report.RecordSelectionFormula = "{ACCOUNT.ACCOUNTID} = '" + someAccountId + "'";
-var attachment = report.CreateAttachment();
+var attachment = report.CreateAttachment(); // returns an Sage.Entity.Interfaces.IAttachment object
 attachment.AccountId = someAccountId;
 attachment.Save();
 ```
