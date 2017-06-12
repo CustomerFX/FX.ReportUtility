@@ -89,6 +89,12 @@ namespace FX.ReportUtility
             var fileName = Path.Combine(OutputFilePath, SanitizeFileName(OutputFileName));
             Log.Debug("File name to output report to: " + fileName);
 
+            try
+            {
+                if (File.Exists(fileName)) File.Delete(fileName);
+            }
+            catch { }
+
             var plugin = Plugin.LoadByName(this.ReportName, this.ReportFamily, PluginType.CrystalReport);
             if (plugin != null)
             {
