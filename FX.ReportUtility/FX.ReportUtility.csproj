@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86">
@@ -39,22 +40,22 @@
       <HintPath>$(ProgramFiles)\Saleslogix\ReferenceAssemblies\Sage.Entity.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Sage.Platform">
-      <HintPath>$(ProgramFiles)\Saleslogix\ReferenceAssemblies\Sage.Platform.dll</HintPath>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SlxClient\Bin\Sage.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Sage.Platform.Application">
-      <HintPath>$(ProgramFiles)\Saleslogix\ReferenceAssemblies\Sage.Platform.Application.dll</HintPath>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SlxClient\Bin\Sage.Platform.Application.dll</HintPath>
     </Reference>
     <Reference Include="Sage.SalesLogix">
-      <HintPath>$(ProgramFiles)\Saleslogix\ReferenceAssemblies\Sage.SalesLogix.dll</HintPath>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SlxClient\Bin\Sage.SalesLogix.dll</HintPath>
     </Reference>
     <Reference Include="Sage.SalesLogix.DelphiBridge">
-      <HintPath>$(ProgramFiles)\Saleslogix\ReferenceAssemblies\Sage.SalesLogix.DelphiBridge.dll</HintPath>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SlxClient\Bin\Sage.SalesLogix.DelphiBridge.dll</HintPath>
     </Reference>
     <Reference Include="Sage.SalesLogix.Plugins">
-      <HintPath>$(ProgramFiles)\Saleslogix\ReferenceAssemblies\Sage.SalesLogix.Plugins.dll</HintPath>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SlxClient\Bin\Sage.SalesLogix.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="Saleslogix.Reporting.API">
-      <HintPath>$(ProgramFiles)\Saleslogix\ReferenceAssemblies\Saleslogix.Reporting.API.dll</HintPath>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SlxClient\Bin\Saleslogix.Reporting.API.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
