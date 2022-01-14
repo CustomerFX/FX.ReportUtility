@@ -115,7 +115,10 @@ namespace FX.ReportUtility
                 {
                     report.Load(tempRpt);
                     report.UpdateDbConnectionInfo(this.ConnectionString);
-                    report.RecordSelectionFormula = string.Format("{0}({0}{1}{0}) and {0}{2}", System.Environment.NewLine, report.RecordSelectionFormula, this.RecordSelectionFormula);
+                    if (!string.IsNullOrEmpty(report.RecordSelectionFormula))
+                        report.RecordSelectionFormula = string.Format("{0}({0}{1}{0}) and {0}{2}", System.Environment.NewLine, report.RecordSelectionFormula, this.RecordSelectionFormula);
+                    else
+                        report.RecordSelectionFormula = this.RecordSelectionFormula;
                     if (this.Parameters.Count > 0) this.Parameters.ForEach(param => report.SetParameterValue(param.Key, param.Value));
                     report.ExportAsPdfEx(fileName, plugin.Name, true);
                     report.Close();
