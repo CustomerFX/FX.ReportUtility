@@ -28,3 +28,6 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 !Deliverable/
+
+# Visual Studio local workspace files
+.vs/
